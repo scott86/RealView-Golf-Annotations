@@ -10,6 +10,7 @@ You are welcome to add new courses or suggest edits by filing a Pull Request.
 ### KMLs
 Use Google Earth to work with the kml files. The Structure must match the following:
 
+```
 Folder: Course Name
   Folder: 1
     Description: par N
@@ -18,6 +19,8 @@ Folder: Course Name
   ...
   Folder: 18
   Folder: global
+    [List of Placemarks]
+```
 
 There should be 19 subfolders in each course. One for each hole, named 1-18, and a folder named "global". 
 
@@ -53,4 +56,17 @@ The global folder contains the geometries that may not necessarily associate wit
 | asphalt    | Polygon    | no          | no limit |
 | water_hole | Polygon    | no          | no limit |
 
+### Topography
 
+<b>NOTE: The easiest way to create these files is to use Christoph Hofstetter's [Countour Map Creator](https://contourmapcreator.urgr8.ch/). Enter the desired number of sampling points, click the map to set the grid boundary, click "get data", then copy & paste the samples from the  "Elevation Data" textbox.</b>  
+
+Every course folder in the topo folder needs to contain 18 *.topo files, named 1.topo, 2.topo, ..., 18.topo.
+They are plaintext files that contain a grid of elevation samples. The grid should be along the lat/lon axes and cover the extent of the green. It is not a bad idea to expand the coverage grid a few yards past the current extent of the green in case the green is modified in the future.
+
+The first line of the topo file specifies the boundary of the coverage grid, separated with tabs.
+
+```
+minLat  minLon  maxLat  maxLon
+```
+
+After that, each row represents a latitudinal line of elevation samples. The samples do NOT need to be relative to sea level, but they must be in meters.
